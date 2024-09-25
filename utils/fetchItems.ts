@@ -6,7 +6,7 @@ export interface Item {
   link: string;
 }
 
-export const fetchItems = async (): Promise<Item[]> => {
+const fetchItems = async (): Promise<Item[]> => {
   try {
     const response = await fetch(
       "https://bindingofisaacrebirth.fandom.com/wiki/Collection_Page_(Repentance)"
@@ -30,3 +30,5 @@ export const fetchItems = async (): Promise<Item[]> => {
     return [];
   }
 };
+
+export default fetchItems;

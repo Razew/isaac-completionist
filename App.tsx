@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { Item, fetchItems } from "./fetchItems";
+import fetchItems, { Item } from "./utils/fetchItems";
 
 // const baseUrl = "https://bindingofisaacrebirth.fandom.com/";
 
