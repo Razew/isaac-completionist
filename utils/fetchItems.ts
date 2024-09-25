@@ -1,10 +1,10 @@
 import cheerio from "cheerio-without-node-native";
 
-export interface Item {
+export type Item = {
   title: string;
   image: string;
   link: string;
-}
+};
 
 const fetchItems = async (): Promise<Item[]> => {
   try {
