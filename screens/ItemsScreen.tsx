@@ -28,7 +28,7 @@ export default function ItemsScreen() {
       <FlatList
         data={items}
         renderItem={({ item }) => <Item item={item} />}
-        keyExtractor={(item) => item.title}
+        keyExtractor={(item, index) => `${item.title}-${index}`}
       />
     </View>
   );
