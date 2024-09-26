@@ -19,6 +19,7 @@ const Item = memo(({ item }: { item: ItemProps }) => (
   </View>
 ));
 
+// TODO: Add WebView for when clicking on an item and display the WebView in a modal
 export default function ItemsScreen() {
   const [items, setItems] = useState<ItemProps[]>([]);
 
