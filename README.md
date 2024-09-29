@@ -4,7 +4,7 @@
 
 | React Native | Expo       |
 | ------------ | ---------- |
-| Komponent1   | Komponent1 |
+| FlatList     | Komponent1 |
 | Komponent2   | Komponent2 |
 | Komponent3   | Komponent3 |
 | Komponent4   | Komponent4 |
