@@ -14,7 +14,7 @@ import fetchItems, { Item as ItemProps } from "../utils/fetchItems";
 // TODO: Add react-native-tooltip?
 const Item = memo(({ item }: { item: ItemProps }) => (
   <View key={item.title}>
-    <Image source={{ uri: item.image }} style={{ width: 55, height: 55 }} />
+    <Image source={{ uri: item.image }} style={styles.itemImage} />
     {/* <Text>{item.title}</Text> */}
   </View>
 ));
@@ -49,5 +49,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
     backgroundColor: "#fff",
+  },
+  itemImage: {
+    width: 55,
+    height: 55,
   },
 });
