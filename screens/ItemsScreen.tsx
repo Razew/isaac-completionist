@@ -8,20 +8,21 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { Tooltip } from "react-native-paper";
+import { Modal, Portal, Tooltip } from "react-native-paper";
+import WebView from "react-native-webview";
 import fetchItems, { Item as ItemProps } from "../utils/fetchItems";
 
-// const baseUrl = "https://bindingofisaacrebirth.fandom.com/";
+const baseUrl = "https://bindingofisaacrebirth.fandom.com";
 
 const Item = memo(
   ({ item, onPress }: { item: ItemProps; onPress: () => void }) => (
-    <Pressable onPress={onPress}>
-      <Tooltip title={item.title} leaveTouchDelay={200}>
+    <Tooltip title={item.title} leaveTouchDelay={200}>
+      <Pressable onPress={onPress}>
         <View key={item.title}>
           <Image source={{ uri: item.image }} style={styles.itemImage} />
         </View>
-      </Tooltip>
-    </Pressable>
+      </Pressable>
+    </Tooltip>
   ),
   (prevProps, nextProps) => prevProps.item === nextProps.item // Optimization attempt
 );
@@ -35,6 +36,8 @@ const getItemLayout = (_: unknown, index: number) => ({
 // TODO: Add WebView for when clicking on an item and display the WebView in a modal
 export default function ItemsScreen() {
   const [items, setItems] = useState<ItemProps[]>([]);
+  const [selectedItem, setSelectedItem] = useState<ItemProps | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const getItems = async () => {
@@ -45,16 +48,39 @@ export default function ItemsScreen() {
     getItems();
   }, []);
 
+  const handleItemPress = (item: ItemProps) => {
+    setSelectedItem(item);
+    setModalVisible(true);
+  };
+
+  const handleModalDismiss = () => {
+    setSelectedItem(null);
+    setModalVisible(false);
+  };
+
   // FIXME: This SafeAreaView is only applicable to iOS
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={items}
-        renderItem={({ item }) => <Item item={item} onPress={() => null} />}
+        renderItem={({ item }) => (
+          <Item item={item} onPress={() => handleItemPress(item)} />
+        )}
         keyExtractor={(item, index) => `${item.title}-${index}`}
         numColumns={6}
         getItemLayout={getItemLayout}
       />
+      <Portal>
+        <Modal
+          visible={modalVisible}
+          onDismiss={handleModalDismiss}
+          contentContainerStyle={styles.modalContent}
+        >
+          {selectedItem && (
+            <WebView source={{ uri: baseUrl + selectedItem.link }} />
+          )}
+        </Modal>
+      </Portal>
     </SafeAreaView>
   );
 }
@@ -68,5 +94,12 @@ const styles = StyleSheet.create({
   itemImage: {
     width: 55,
     height: 55,
+  },
+  modalContent: {
+    flex: 1,
+    backgroundColor: "#422275",
+    padding: 5,
+    margin: 25,
+    borderRadius: 3,
   },
 });
