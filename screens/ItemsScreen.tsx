@@ -24,7 +24,7 @@ const Item = memo(
       </Pressable>
     </Tooltip>
   ),
-  (prevProps, nextProps) => prevProps.item === nextProps.item // Optimization attempt
+  (prevProps, nextProps) => prevProps.item === nextProps.item
 );
 
 const getItemLayout = (_: unknown, index: number) => ({
@@ -33,11 +33,9 @@ const getItemLayout = (_: unknown, index: number) => ({
   index,
 });
 
-// TODO: Add WebView for when clicking on an item and display the WebView in a modal
 export default function ItemsScreen() {
   const [items, setItems] = useState<ItemProps[]>([]);
   const [selectedItem, setSelectedItem] = useState<ItemProps | null>(null);
-  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const getItems = async () => {
@@ -50,12 +48,10 @@ export default function ItemsScreen() {
 
   const handleItemPress = (item: ItemProps) => {
     setSelectedItem(item);
-    setModalVisible(true);
   };
 
   const handleModalDismiss = () => {
     setSelectedItem(null);
-    setModalVisible(false);
   };
 
   // FIXME: This SafeAreaView is only applicable to iOS
@@ -72,7 +68,7 @@ export default function ItemsScreen() {
       />
       <Portal>
         <Modal
-          visible={modalVisible}
+          visible={!!selectedItem}
           onDismiss={handleModalDismiss}
           contentContainerStyle={styles.modalContent}
         >
