@@ -5,7 +5,7 @@
 | React Native | Expo       |
 | ------------ | ---------- |
 | FlatList     | Image      |
-| Pressable    | Komponent2 |
+| Pressable    | WebView    |
 | View         | Komponent3 |
 | Komponent4   | Komponent4 |
 
