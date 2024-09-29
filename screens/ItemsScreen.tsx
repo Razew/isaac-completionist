@@ -1,31 +1,11 @@
-import { Image } from "expo-image";
-import { memo, useEffect, useState } from "react";
-import {
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  View,
-} from "react-native";
-import { Modal, Portal, Tooltip } from "react-native-paper";
+import { useEffect, useState } from "react";
+import { FlatList, SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import { Modal, Portal } from "react-native-paper";
 import WebView from "react-native-webview";
+import Item from "../components/Item";
 import fetchItems, { Item as ItemProps } from "../utils/fetchItems";
 
 const baseUrl = "https://bindingofisaacrebirth.fandom.com";
-
-const Item = memo(
-  ({ item, onPress }: { item: ItemProps; onPress: () => void }) => (
-    <Tooltip title={item.title} leaveTouchDelay={200}>
-      <Pressable onPress={onPress}>
-        <View key={item.title}>
-          <Image source={{ uri: item.image }} style={styles.itemImage} />
-        </View>
-      </Pressable>
-    </Tooltip>
-  ),
-  (prevProps, nextProps) => prevProps.item === nextProps.item
-);
 
 const getItemLayout = (_: unknown, index: number) => ({
   length: 55,
@@ -37,6 +17,7 @@ export default function ItemsScreen() {
   const [items, setItems] = useState<ItemProps[]>([]);
   const [selectedItem, setSelectedItem] = useState<ItemProps | null>(null);
 
+  // TODO: Add loading symbol?
   useEffect(() => {
     const getItems = async () => {
       const items = await fetchItems();
@@ -45,6 +26,10 @@ export default function ItemsScreen() {
 
     getItems();
   }, []);
+
+  const renderItem = ({ item }: { item: ItemProps }) => (
+    <Item item={item} onPress={() => handleItemPress(item)} />
+  );
 
   const handleItemPress = (item: ItemProps) => {
     setSelectedItem(item);
@@ -59,9 +44,7 @@ export default function ItemsScreen() {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={items}
-        renderItem={({ item }) => (
-          <Item item={item} onPress={() => handleItemPress(item)} />
-        )}
+        renderItem={renderItem}
         keyExtractor={(item, index) => `${item.title}-${index}`}
         numColumns={6}
         getItemLayout={getItemLayout}
@@ -86,10 +69,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
     backgroundColor: "#fff",
-  },
-  itemImage: {
-    width: 55,
-    height: 55,
   },
   modalContent: {
     flex: 1,
