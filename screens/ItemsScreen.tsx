@@ -8,25 +8,19 @@ import {
   StyleSheet,
   View,
 } from "react-native";
+import { Tooltip } from "react-native-paper";
 import fetchItems, { Item as ItemProps } from "../utils/fetchItems";
 
 // const baseUrl = "https://bindingofisaacrebirth.fandom.com/";
 
-// TODO: Add react-native-paper for tooltip?
 const Item = memo(
-  ({
-    item,
-    onPress,
-    onLongPress,
-  }: {
-    item: ItemProps;
-    onPress: () => void;
-    onLongPress: () => void;
-  }) => (
-    <Pressable onPress={onPress} onLongPress={onLongPress}>
-      <View key={item.title}>
-        <Image source={{ uri: item.image }} style={styles.itemImage} />
-      </View>
+  ({ item, onPress }: { item: ItemProps; onPress: () => void }) => (
+    <Pressable onPress={onPress}>
+      <Tooltip title={item.title} leaveTouchDelay={500}>
+        <View key={item.title}>
+          <Image source={{ uri: item.image }} style={styles.itemImage} />
+        </View>
+      </Tooltip>
     </Pressable>
   )
 );
@@ -44,22 +38,12 @@ export default function ItemsScreen() {
     getItems();
   }, []);
 
-  const handleItemLongPress = (item: ItemProps) => {
-    alert(item.title);
-  };
-
   // FIXME: This SafeAreaView is only applicable to iOS
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={items}
-        renderItem={({ item }) => (
-          <Item
-            item={item}
-            onPress={() => null}
-            onLongPress={() => handleItemLongPress(item)}
-          />
-        )}
+        renderItem={({ item }) => <Item item={item} onPress={() => null} />}
         keyExtractor={(item, index) => `${item.title}-${index}`}
         numColumns={6}
       />
