@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import { Modal, Portal } from "react-native-paper";
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  View,
+} from "react-native";
+import { ActivityIndicator, Modal, Portal, Text } from "react-native-paper";
 import WebView from "react-native-webview";
 import Item from "../components/Item";
 import fetchItems, { Item as ItemProps } from "../utils/fetchItems";
@@ -16,12 +22,14 @@ const getItemLayout = (_: unknown, index: number) => ({
 export default function ItemsScreen() {
   const [items, setItems] = useState<ItemProps[]>([]);
   const [selectedItem, setSelectedItem] = useState<ItemProps | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // TODO: Add loading symbol?
   useEffect(() => {
     const getItems = async () => {
+      setLoading(true);
       const items = await fetchItems();
       setItems(items);
+      setLoading(false);
     };
 
     getItems();
@@ -39,6 +47,15 @@ export default function ItemsScreen() {
     setSelectedItem(null);
   };
 
+  if (loading) {
+    return (
+      <View>
+        <ActivityIndicator animating={true} size="large" />
+        <Text style={styles.loadingText}>Loading items..</Text>
+      </View>
+    );
+  }
+
   // FIXME: This SafeAreaView is only applicable to iOS
   return (
     <SafeAreaView style={styles.container}>
@@ -48,6 +65,7 @@ export default function ItemsScreen() {
         keyExtractor={(item, index) => `${item.title}-${index}`}
         numColumns={6}
         getItemLayout={getItemLayout}
+        initialNumToRender={90}
       />
       <Portal>
         <Modal
@@ -76,5 +94,9 @@ const styles = StyleSheet.create({
     padding: 5,
     margin: 25,
     borderRadius: 3,
+  },
+  loadingText: {
+    fontSize: 18,
+    marginTop: 20,
   },
 });
