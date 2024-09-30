@@ -1,8 +1,16 @@
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import TabNavigator from "./TabNavigator";
+
 export type RootStackParamList = {
-  Home: undefined;
-  Items: undefined;
+  HomeNavigator: undefined;
 };
 
+const RootStack = createNativeStackNavigator<RootStackParamList>();
+
 export default function RootStackNavigator() {
-  return null;
+  return (
+    <RootStack.Navigator>
+      <RootStack.Screen name="HomeNavigator" component={TabNavigator} />
+    </RootStack.Navigator>
+  );
 }
