@@ -38,7 +38,7 @@ export default function ItemsScreen() {
 
   if (loading) {
     return (
-      <View>
+      <View style={styles.container}>
         <ActivityIndicator animating={true} size="large" />
         <Text style={styles.loadingText}>Loading items..</Text>
       </View>
