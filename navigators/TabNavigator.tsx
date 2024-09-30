@@ -11,7 +11,7 @@ export type TabParamList = {
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
-export default function RootStackNavigator() {
+export default function TabNavigator() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
