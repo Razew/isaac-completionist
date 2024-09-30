@@ -2,12 +2,12 @@
 
 #### Använda komponenter
 
-| React Native | Expo       |
-| ------------ | ---------- |
-| FlatList     | Image      |
-| Pressable    | WebView    |
-| View         | Komponent3 |
-| Komponent4   | Komponent4 |
+| React Native | Expo              |
+| ------------ | ----------------- |
+| FlatList     | Image             |
+| Pressable    | WebView           |
+| View         | Video (expo-av)   |
+|              | ScreenOrientation |
 
 ---
 
