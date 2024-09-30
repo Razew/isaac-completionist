@@ -1,24 +1,15 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
 import { PaperProvider } from "react-native-paper";
+import ItemProvider from "./contexts/ItemContext";
 import ItemsScreen from "./screens/ItemsScreen";
 
 export default function App() {
   return (
     <PaperProvider>
-      <View style={styles.container}>
-        <ItemsScreen />
+      <ItemProvider>
         <StatusBar style="auto" />
-      </View>
+        <ItemsScreen />
+      </ItemProvider>
     </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
