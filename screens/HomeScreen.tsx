@@ -10,7 +10,7 @@ export default function HomeScreen() {
         source={{
           uri: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTVoNXVzNmxxbTd4cWRldmxtM2N1ajF4Ymhmb2trYW96c2Q1djNmNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/NmilAru4aJYjlpy6cx/giphy.gif",
         }}
-        style={{ width: 250, height: 250 }}
+        style={styles.image}
       />
       <Text style={styles.subtitle}>
         The app for all of your The Binding of Isaac: Rebirth needs!
@@ -65,5 +65,9 @@ const styles = StyleSheet.create({
   button: {
     marginVertical: 8,
     width: "80%",
+  },
+  image: {
+    width: 250,
+    height: 250,
   },
 });
