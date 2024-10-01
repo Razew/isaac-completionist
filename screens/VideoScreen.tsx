@@ -35,7 +35,7 @@ export default function VideoScreen({ navigation }: Props) {
     if (video.current) {
       await video.current.stopAsync();
     }
-    ScreenOrientation.unlockAsync();
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     navigation.navigate("HomeNavigator");
   };
 
