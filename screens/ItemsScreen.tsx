@@ -18,7 +18,7 @@ const baseUrl = "https://bindingofisaacrebirth.fandom.com";
 export default function ItemsScreen() {
   const [selectedItem, setSelectedItem] = useState<ItemProps | null>(null);
   const { items, loading } = useItems();
-  const [flatListRendered, setFlatListRendered] = useState(false);
+  const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
   const { width: screenWidth } = useWindowDimensions();
   const itemSize = (screenWidth / 6) * 0.9;
 
@@ -42,13 +42,13 @@ export default function ItemsScreen() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setFlatListRendered(true);
+      setHasLoadedOnce(true);
     }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading || !flatListRendered) {
+  if (loading || !hasLoadedOnce) {
     return <LoadingScreen message="Loading items.." />;
   }
 
