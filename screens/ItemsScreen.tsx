@@ -81,8 +81,8 @@ export default function ItemsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-    backgroundColor: "#fff",
+    marginTop: StatusBar.currentHeight || 50,
+    //  backgroundColor: "#282c34"
     alignItems: "center",
     justifyContent: "center",
   },
