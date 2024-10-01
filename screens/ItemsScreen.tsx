@@ -1,31 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FlatList,
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  View,
+  useWindowDimensions,
 } from "react-native";
-import { ActivityIndicator, Modal, Portal, Text } from "react-native-paper";
+import { Modal, Portal } from "react-native-paper";
 import WebView from "react-native-webview";
 import Item from "../components/Item";
-import { useItems } from "../contexts/ItemContext";
+import { useItems } from "../contexts/ItemProvider";
 import { Item as ItemProps } from "../utils/fetchItems";
+import LoadingScreen from "./LoadingScreen";
 
 const baseUrl = "https://bindingofisaacrebirth.fandom.com";
-
-const getItemLayout = (_: unknown, index: number) => ({
-  length: 55,
-  offset: 55 * index,
-  index,
-});
 
 export default function ItemsScreen() {
   const [selectedItem, setSelectedItem] = useState<ItemProps | null>(null);
   const { items, loading } = useItems();
+  const [flatListRendered, setFlatListRendered] = useState(false);
+  const { width: screenWidth } = useWindowDimensions();
+  const itemSize = (screenWidth / 6) * 0.9;
 
   const renderItem = ({ item }: { item: ItemProps }) => (
-    <Item item={item} onPress={() => handleItemPress(item)} />
+    <Item item={item} onPress={() => handleItemPress(item)} size={itemSize} />
   );
 
   const handleItemPress = (item: ItemProps) => {
@@ -36,16 +34,25 @@ export default function ItemsScreen() {
     setSelectedItem(null);
   };
 
-  if (loading) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator animating={true} size="large" />
-        <Text style={styles.loadingText}>Loading items..</Text>
-      </View>
-    );
+  const getItemLayout = (_: unknown, index: number) => ({
+    length: itemSize,
+    offset: itemSize * index,
+    index,
+  });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFlatListRendered(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading || !flatListRendered) {
+    return <LoadingScreen message="Loading items.." />;
   }
 
-  // FIXME: This SafeAreaView is only applicable to iOS
+  // FIXME: This SafeAreaView is only applicable to iOS, the safe are part that is
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -54,19 +61,19 @@ export default function ItemsScreen() {
         keyExtractor={(item, index) => `${item.title}-${index}`}
         numColumns={6}
         getItemLayout={getItemLayout}
-        initialNumToRender={90}
+        initialNumToRender={30}
       />
-      <Portal>
-        <Modal
-          visible={!!selectedItem}
-          onDismiss={handleModalDismiss}
-          contentContainerStyle={styles.modalContent}
-        >
-          {selectedItem && (
+      {!!selectedItem && (
+        <Portal>
+          <Modal
+            visible
+            onDismiss={handleModalDismiss}
+            contentContainerStyle={styles.modalContent}
+          >
             <WebView source={{ uri: baseUrl + selectedItem.link }} />
-          )}
-        </Modal>
-      </Portal>
+          </Modal>
+        </Portal>
+      )}
     </SafeAreaView>
   );
 }
@@ -85,9 +92,5 @@ const styles = StyleSheet.create({
     padding: 5,
     margin: 25,
     borderRadius: 3,
-  },
-  loadingText: {
-    fontSize: 18,
-    marginTop: 20,
   },
 });
