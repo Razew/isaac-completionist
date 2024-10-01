@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AVPlaybackStatus, ResizeMode, Video } from "expo-av";
 import * as ScreenOrientation from "expo-screen-orientation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { RootStackParamList } from "../navigators/RootStackNavigator";
 
@@ -10,9 +10,6 @@ type Props = NativeStackScreenProps<RootStackParamList, "Video">;
 // TODO: Hide statusbar/buttons when video playing?
 export default function VideoScreen({ navigation }: Props) {
   const video = useRef<Video>(null);
-  const [status, setStatus] = useState<AVPlaybackStatus>(
-    {} as AVPlaybackStatus
-  );
 
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
@@ -22,8 +19,6 @@ export default function VideoScreen({ navigation }: Props) {
   }, []);
 
   const handlePlaybackStatusUpdate = async (status: AVPlaybackStatus) => {
-    setStatus(status);
-
     if (status.isLoaded) {
       if (status.positionMillis < 4000) {
         await video.current?.setPositionAsync(4000);
