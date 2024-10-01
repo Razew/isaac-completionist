@@ -20,7 +20,7 @@ export default function ItemProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     const getItems = async () => {
-      setLoading(true);
+      setLoading(true); // Might not be necessary, but for good measure
       const items = await fetchItems();
       setItems(items);
       setLoading(false);
