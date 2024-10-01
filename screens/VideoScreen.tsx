@@ -14,19 +14,20 @@ export default function VideoScreen({ navigation }: Props) {
   useEffect(() => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
     return () => {
-      ScreenOrientation.unlockAsync();
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     };
   }, []);
 
   const handlePlaybackStatusUpdate = async (status: AVPlaybackStatus) => {
+    if (status.isLoaded && status.didJustFinish) {
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+      navigation.navigate("HomeNavigator");
+    }
+  };
+
+  const handleVideoLoad = async (status: AVPlaybackStatus) => {
     if (status.isLoaded) {
-      if (status.positionMillis < 4000) {
-        await video.current?.setPositionAsync(4000);
-      }
-      if (status.didJustFinish) {
-        ScreenOrientation.unlockAsync();
-        navigation.navigate("HomeNavigator");
-      }
+      await video.current?.setPositionAsync(4000);
     }
   };
 
@@ -49,6 +50,7 @@ export default function VideoScreen({ navigation }: Props) {
           resizeMode={ResizeMode.CONTAIN}
           shouldPlay
           style={styles.video}
+          onLoad={handleVideoLoad}
           onPlaybackStatusUpdate={handlePlaybackStatusUpdate}
         />
       </View>
