@@ -2,17 +2,17 @@
 
 #### Använda komponenter
 
-| React Native | Expo              |
-| ------------ | ----------------- |
-| FlatList     | Image             |
-| Pressable    | WebView           |
-| View         | Video (expo-av)   |
-|              | ScreenOrientation |
+| React Native             | Expo              |
+| ------------------------ | ----------------- |
+| FlatList                 | Image             |
+| Pressable                | WebView           |
+| View                     | Video (expo-av)   |
+| TouchableWithoutFeedback | ScreenOrientation |
 
 ---
 
 **Krav för godkänt:**
-[ ] Projektet använder minst 4 stycken RN-komponenter och minst 4 stycken Expo
+[x] Projektet använder minst 4 stycken RN-komponenter och minst 4 stycken Expo
 komponenter.
 [ ] De utvalda komponenterna MÅSTE antecknas i README filen tillsammans med en
 lista över genomförda krav.
