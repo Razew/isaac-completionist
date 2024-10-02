@@ -32,7 +32,7 @@ export default function VideoScreen({ navigation }: Props) {
     if (status.isLoaded) {
       // await ScreenOrientation.lockAsync(
       //   ScreenOrientation.OrientationLock.LANDSCAPE
-      // );
+      // ); // Only relevant during development due to hot reloads
       await NavigationBar.setVisibilityAsync("hidden");
       await video.current?.setPositionAsync(4000);
     }
@@ -83,16 +83,3 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 });
-
-// useEffect(() => {
-//   const lockScreenOrientation = async (
-//     orientation: ScreenOrientation.OrientationLock
-//   ) => {
-//     await ScreenOrientation.lockAsync(orientation);
-//   };
-
-//   lockScreenOrientation(ScreenOrientation.OrientationLock.LANDSCAPE);
-//   return () => {
-//     lockScreenOrientation(ScreenOrientation.OrientationLock.PORTRAIT);
-//   };
-// }, []);
