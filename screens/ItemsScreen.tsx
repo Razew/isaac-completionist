@@ -78,7 +78,7 @@ export default function ItemsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 10,
+    marginTop: 16,
     //  backgroundColor: "#282c34"
     alignItems: "center",
     justifyContent: "center",
@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "bold",
     textAlign: "center",
+    // marginTop: 10,
     marginBottom: 5,
   },
 });
