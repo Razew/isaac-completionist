@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, useWindowDimensions } from "react-native";
-import { Modal, Portal } from "react-native-paper";
+import { Modal, Portal, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import WebView from "react-native-webview";
 import Item from "../components/Item";
@@ -47,10 +47,12 @@ export default function ItemsScreen() {
     return <LoadingScreen message="Loading items..." />;
   }
 
-  // The safe area part of SafeAreaView is only applicable to iOS
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
+        ListHeaderComponent={
+          <Text style={styles.listHeader}>Collectible Items</Text>
+        }
         data={items}
         renderItem={renderItem}
         keyExtractor={(item, index) => `${item.title}-${index}`}
@@ -76,7 +78,7 @@ export default function ItemsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    marginTop: 10,
     //  backgroundColor: "#282c34"
     alignItems: "center",
     justifyContent: "center",
@@ -87,5 +89,11 @@ const styles = StyleSheet.create({
     padding: 5,
     margin: 25,
     borderRadius: 3,
+  },
+  listHeader: {
+    fontSize: 26,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 5,
   },
 });
