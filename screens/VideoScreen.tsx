@@ -1,5 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AVPlaybackStatus, ResizeMode, Video } from "expo-av";
+import * as NavigationBar from "expo-navigation-bar";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useRef, useState } from "react";
@@ -8,7 +9,6 @@ import { RootStackParamList } from "../navigators/RootStackNavigator";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Video">;
 
-// TODO: Hide buttons when video playing?
 // TODO: Add delay before skip is available?
 // TODO: Add 'hint' when skip is available
 export default function VideoScreen({ navigation }: Props) {
@@ -24,9 +24,7 @@ export default function VideoScreen({ navigation }: Props) {
 
   const handlePlaybackStatusUpdate = async (status: AVPlaybackStatus) => {
     if (status.isLoaded && status.didJustFinish) {
-      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-      setIsStatusBarHidden(false);
-      navigation.navigate("HomeNavigator");
+      await handleExit();
     }
   };
 
@@ -35,21 +33,27 @@ export default function VideoScreen({ navigation }: Props) {
       // await ScreenOrientation.lockAsync(
       //   ScreenOrientation.OrientationLock.LANDSCAPE
       // );
+      await NavigationBar.setVisibilityAsync("hidden");
       await video.current?.setPositionAsync(4000);
     }
   };
 
-  const handleExit = async () => {
+  const handleSkip = async () => {
     if (video.current) {
       await video.current.stopAsync();
     }
+    await handleExit();
+  };
+
+  const handleExit = async () => {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
+    NavigationBar.setVisibilityAsync("visible");
     setIsStatusBarHidden(false);
     navigation.navigate("HomeNavigator");
   };
 
   return (
-    <TouchableWithoutFeedback onPress={handleExit}>
+    <TouchableWithoutFeedback onPress={handleSkip}>
       <View style={styles.container}>
         <StatusBar hidden={isStatusBarHidden} />
         <Video
