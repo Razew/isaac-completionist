@@ -1,11 +1,13 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import AchievementsScreen from "../screens/AchievementsScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ItemsScreen from "../screens/ItemsScreen";
 
 export type TabParamList = {
   Home: undefined;
   Items: undefined;
+  Achievements: undefined;
 };
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -32,6 +34,15 @@ export default function TabNavigator() {
               size={size}
               color={color}
             />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Achievements"
+        component={AchievementsScreen}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <MaterialCommunityIcons name="trophy" size={size} color={color} />
           ),
         }}
       />
