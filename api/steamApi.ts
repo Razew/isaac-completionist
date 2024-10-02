@@ -8,7 +8,7 @@ export type AchievementData = {
   icongray: string;
 };
 
-export const fetchAllAchievements = async (): Promise<AchievementData[]> => {
+export const fetchAllAchievements = async () => {
   const apiKey = await getItemAsync("API_KEY");
   if (!apiKey) {
     throw new Error("API key not found");
@@ -16,7 +16,17 @@ export const fetchAllAchievements = async (): Promise<AchievementData[]> => {
   const url = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${apiKey}&appid=250900`;
   const response = await fetch(url);
   const data = await response.json();
-  return data.game.availableGameStats.achievements;
+
+  const achievements: AchievementData[] =
+    data.game.availableGameStats.achievements.map((achievement: any) => ({
+      name: achievement.name,
+      displayName: achievement.displayName,
+      description: achievement.description,
+      icon: achievement.icon,
+      icongray: achievement.icongray,
+    }));
+
+  return achievements;
 };
 
 //   "name": "1",
