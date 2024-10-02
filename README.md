@@ -7,11 +7,10 @@
 | FlatList                 | Image             |
 | Pressable                | WebView           |
 | View                     | Video (expo-av)   |
-| SafeAreaView             | ScreenOrientation |
-| TouchableWithoutFeedback | NavigationBar     |
-| Text (Paper)             | StatusBar         |
-| Button (Paper)           |                   |
-| Modal (Paper)            |                   |
+| TouchableWithoutFeedback | ScreenOrientation |
+| Text (Paper)             | NavigationBar     |
+| Button (Paper)           | StatusBar         |
+| Modal (Paper)            | SafeAreaContext   |
 | Linking _(module)_       |                   |
 
 ### Ytterligare externa moduler
