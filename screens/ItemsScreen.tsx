@@ -52,7 +52,7 @@ export default function ItemsScreen() {
     return <LoadingScreen message="Loading items.." />;
   }
 
-  // FIXME: This SafeAreaView is only applicable to iOS, the safe are part that is
+  // FIXME: This SafeAreaView is only applicable to iOS, the safe area part that is
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
