@@ -1,12 +1,12 @@
 import cheerio from "cheerio-without-node-native";
 
-export type Item = {
+export type ItemData = {
   title: string;
   image: string;
   link: string;
 };
 
-const fetchItems = async (): Promise<Item[]> => {
+const fetchItems = async (): Promise<ItemData[]> => {
   try {
     const response = await fetch(
       "https://bindingofisaacrebirth.fandom.com/wiki/Collection_Page_(Repentance)"
@@ -15,7 +15,7 @@ const fetchItems = async (): Promise<Item[]> => {
     const htmlString = await response.text();
     const $ = cheerio.load(htmlString);
 
-    const itemsArray: Item[] = Array.from($("td > span.tooltip")).map(
+    const itemsArray: ItemData[] = Array.from($("td > span.tooltip")).map(
       (element: any) => ({
         title: $(element).find("a").attr("title"),
         image: $(element).find("img").attr("data-src"),

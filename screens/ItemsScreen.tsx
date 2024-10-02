@@ -9,23 +9,23 @@ import { Modal, Portal } from "react-native-paper";
 import WebView from "react-native-webview";
 import Item from "../components/Item";
 import { useItems } from "../contexts/ItemProvider";
-import { Item as ItemProps } from "../utils/fetchItems";
+import { ItemData } from "../utils/fetchItems";
 import LoadingScreen from "./LoadingScreen";
 
 const baseUrl = "https://bindingofisaacrebirth.fandom.com";
 
 export default function ItemsScreen() {
-  const [selectedItem, setSelectedItem] = useState<ItemProps | null>(null);
+  const [selectedItem, setSelectedItem] = useState<ItemData | null>(null);
   const { items, loading } = useItems();
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
   const { width: screenWidth } = useWindowDimensions();
   const itemSize = (screenWidth / 6) * 0.9;
 
-  const renderItem = ({ item }: { item: ItemProps }) => (
+  const renderItem = ({ item }: { item: ItemData }) => (
     <Item item={item} onPress={() => handleItemPress(item)} size={itemSize} />
   );
 
-  const handleItemPress = (item: ItemProps) => {
+  const handleItemPress = (item: ItemData) => {
     setSelectedItem(item);
   };
 

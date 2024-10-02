@@ -2,14 +2,14 @@ import { Image } from "expo-image";
 import { memo } from "react";
 import { Pressable, View } from "react-native";
 import { Tooltip } from "react-native-paper";
-import { Item as ItemProps } from "../utils/fetchItems";
+import { ItemData } from "../utils/fetchItems";
 
 const Item = ({
   item,
   onPress,
   size,
 }: {
-  item: ItemProps;
+  item: ItemData;
   onPress: () => void;
   size: number;
 }) => (

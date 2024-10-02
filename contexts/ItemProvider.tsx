@@ -5,17 +5,17 @@ import {
   useEffect,
   useState,
 } from "react";
-import fetchItems, { Item as ItemProps } from "../utils/fetchItems";
+import fetchItems, { ItemData } from "../utils/fetchItems";
 
 type ContextValue = {
-  items: ItemProps[];
+  items: ItemData[];
   loading: boolean;
 };
 
 const ItemContext = createContext<ContextValue>({} as ContextValue);
 
 export default function ItemProvider({ children }: PropsWithChildren) {
-  const [items, setItems] = useState<ItemProps[]>([]);
+  const [items, setItems] = useState<ItemData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
