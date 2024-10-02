@@ -1,5 +1,4 @@
 import { getItemAsync } from "expo-secure-store";
-// import { API_KEY } from "./API_KEY";
 
 export type AchievementData = {
   name: string;
