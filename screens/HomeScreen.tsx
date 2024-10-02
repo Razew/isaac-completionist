@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import { Linking, StatusBar, StyleSheet, View } from "react-native";
+import { Linking, StyleSheet, View } from "react-native";
 import { Button, Text } from "react-native-paper";
 
 export default function HomeScreen() {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 16,
-    marginTop: StatusBar.currentHeight || 50,
+    marginTop: 50,
   },
   title: {
     fontSize: 34,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginVertical: 8,
-    width: "80%",
+    width: "70%",
   },
   image: {
     width: 250,

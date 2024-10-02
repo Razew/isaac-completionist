@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   FlatList,
   SafeAreaView,
-  StatusBar,
   StyleSheet,
   useWindowDimensions,
 } from "react-native";
@@ -49,7 +48,7 @@ export default function ItemsScreen() {
   }, []);
 
   if (loading || !hasLoadedOnce) {
-    return <LoadingScreen message="Loading items.." />;
+    return <LoadingScreen message="Loading items..." />;
   }
 
   // The safe area part of SafeAreaView is only applicable to iOS
@@ -81,7 +80,7 @@ export default function ItemsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 50,
+    marginTop: 50,
     //  backgroundColor: "#282c34"
     alignItems: "center",
     justifyContent: "center",
