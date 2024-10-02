@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
-import {
-  FlatList,
-  SafeAreaView,
-  StyleSheet,
-  useWindowDimensions,
-} from "react-native";
+import { FlatList, StyleSheet, useWindowDimensions } from "react-native";
 import { Modal, Portal } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 import WebView from "react-native-webview";
 import Item from "../components/Item";
 import { useItems } from "../contexts/ItemProvider";
@@ -80,7 +76,7 @@ export default function ItemsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 50,
+    marginTop: 20,
     //  backgroundColor: "#282c34"
     alignItems: "center",
     justifyContent: "center",

@@ -1,10 +1,11 @@
 import { Image } from "expo-image";
-import { Linking, StyleSheet, View } from "react-native";
+import { Linking, StyleSheet } from "react-native";
 import { Button, Text } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Isaac Completionist</Text>
       <Image
         source={{
@@ -40,7 +41,7 @@ export default function HomeScreen() {
       <Button mode="contained" style={styles.button} disabled>
         Settings
       </Button>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 16,
-    marginTop: 50,
+    marginTop: 5,
   },
   title: {
     fontSize: 34,
