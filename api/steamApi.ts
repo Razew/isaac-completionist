@@ -1,4 +1,5 @@
-import { API_KEY } from "./apiKey";
+import { getItemAsync } from "expo-secure-store";
+// import { API_KEY } from "./API_KEY";
 
 export type AchievementData = {
   name: string;
@@ -9,7 +10,11 @@ export type AchievementData = {
 };
 
 export const fetchAllAchievements = async (): Promise<AchievementData[]> => {
-  const url = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${API_KEY}&appid=250900`;
+  const apiKey = await getItemAsync("API_KEY");
+  if (!apiKey) {
+    throw new Error("API key not found");
+  }
+  const url = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${apiKey}&appid=250900`;
   const response = await fetch(url);
   const data = await response.json();
   return data.game.availableGameStats.achievements;
