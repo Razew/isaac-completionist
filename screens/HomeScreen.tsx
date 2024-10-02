@@ -1,9 +1,19 @@
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { CompositeScreenProps } from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Image } from "expo-image";
 import { Linking, StyleSheet } from "react-native";
 import { Button, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { RootStackParamList } from "../navigators/RootStackNavigator";
+import { TabParamList } from "../navigators/TabNavigator";
 
-export default function HomeScreen() {
+type Props = CompositeScreenProps<
+  BottomTabScreenProps<TabParamList, "Home">,
+  NativeStackScreenProps<RootStackParamList>
+>;
+
+export default function HomeScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Isaac Completionist</Text>
@@ -38,7 +48,11 @@ export default function HomeScreen() {
       >
         TBOI: Rebirth - Wiki
       </Button>
-      <Button mode="contained" style={styles.button} disabled>
+      <Button
+        mode="contained"
+        style={styles.button}
+        onPress={() => navigation.navigate("Settings")}
+      >
         Settings
       </Button>
     </SafeAreaView>
@@ -50,10 +64,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 16,
-    marginTop: 5,
+    // marginTop: 5,
   },
   title: {
-    fontSize: 34,
+    fontSize: 30,
     fontWeight: "bold",
     marginBottom: 16,
   },
