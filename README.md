@@ -9,8 +9,9 @@
 | View                     | Video (expo-av)   |
 | TouchableWithoutFeedback | ScreenOrientation |
 | Text (Paper)             | NavigationBar     |
-| Button (Paper)           | StatusBar         |
+| TextInput (Paper)        | StatusBar         |
 | Modal (Paper)            | SafeAreaContext   |
+| Button (Paper)           | SecureStore       |
 | Linking _(module)_       |                   |
 
 ### Ytterligare externa moduler
