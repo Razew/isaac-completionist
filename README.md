@@ -1,6 +1,6 @@
 # Inlämning 1 - React Native
 
-#### Använda komponenter
+### Använda komponenter
 
 | React Native             | Expo              |
 | ------------------------ | ----------------- |
