@@ -49,7 +49,7 @@ export default function VideoScreen({ navigation }: Props) {
     ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     NavigationBar.setVisibilityAsync("visible");
     setIsStatusBarHidden(false);
-    navigation.navigate("HomeNavigator");
+    navigation.replace("HomeNavigator");
   };
 
   return (
