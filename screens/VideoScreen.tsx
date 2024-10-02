@@ -8,6 +8,8 @@ import { RootStackParamList } from "../navigators/RootStackNavigator";
 type Props = NativeStackScreenProps<RootStackParamList, "Video">;
 
 // TODO: Hide statusbar/buttons when video playing?
+// TODO: Add delay before skip is available?
+// TODO: Add 'hint' when skip is available
 export default function VideoScreen({ navigation }: Props) {
   const video = useRef<Video>(null);
 
@@ -27,6 +29,9 @@ export default function VideoScreen({ navigation }: Props) {
 
   const handleVideoLoad = async (status: AVPlaybackStatus) => {
     if (status.isLoaded) {
+      // await ScreenOrientation.lockAsync(
+      //   ScreenOrientation.OrientationLock.LANDSCAPE
+      // );
       await video.current?.setPositionAsync(4000);
     }
   };
