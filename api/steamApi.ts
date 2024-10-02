@@ -1,4 +1,4 @@
-import { API_KEY } from "./steamApiKey";
+import { API_KEY } from "./apiKey";
 
 export type AchievementData = {
   name: string;
