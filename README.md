@@ -6,12 +6,13 @@
 | ------------------------ | ----------------- |
 | FlatList                 | Image             |
 | Pressable                | WebView           |
-| View                     | Video (_expo-av_) |
+| View                     | Video (expo-av)   |
 | SafeAreaView             | ScreenOrientation |
 | TouchableWithoutFeedback | NavigationBar     |
 | Text (Paper)             | StatusBar         |
-| Button (Paper)           | Linking           |
+| Button (Paper)           |                   |
 | Modal (Paper)            |                   |
+| Linking _(module)_       |                   |
 
 ---
 
@@ -20,8 +21,8 @@
 komponenter.
 [ ] De utvalda komponenterna MÅSTE antecknas i README filen tillsammans med en
 lista över genomförda krav.
-[ ] React Navigation används för att skapa en bättre upplevelse i appen.
-[ ] Git & GitHub har använts
+[x] React Navigation används för att skapa en bättre upplevelse i appen.
+[x] Git & GitHub har använts
 [ ] Projektmappen innehåller en README.md fil - (läs ovan för mer info)
 [ ] Uppgiften lämnas in i tid!
 [ ] Muntlig presentation är genomförd
