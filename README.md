@@ -14,6 +14,11 @@
 | Modal (Paper)            |                   |
 | Linking _(module)_       |                   |
 
+### Ytterligare externa moduler
+
+- `cheerio-without-node-native`
+- `react-native-paper`
+
 ---
 
 **Krav för godkänt:**
@@ -31,7 +36,7 @@
 **Krav för väl godkänt:**
 
 - [ ] Alla punkter för godkänt är uppfyllda
-- [ ] Ytterligare en valfri extern modul används i projektet (ex. react-hook-form).
+- [x] Ytterligare en valfri extern modul används i projektet (ex. react-hook-form).
 - [ ] Appen ska prata med ett Web-API för att hämta data.
 - [ ] Appen ska förberedas för lansering till en Appstore (Deadline samma dag som kursen
       slutar)
