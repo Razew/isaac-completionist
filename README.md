@@ -6,8 +6,12 @@
 | ------------------------ | ----------------- |
 | FlatList                 | Image             |
 | Pressable                | WebView           |
-| View                     | Video (expo-av)   |
-| TouchableWithoutFeedback | ScreenOrientation |
+| View                     | Video (_expo-av_) |
+| SafeAreaView             | ScreenOrientation |
+| TouchableWithoutFeedback | NavigationBar     |
+| Text (Paper)             | StatusBar         |
+| Button (Paper)           | Linking           |
+| Modal (Paper)            |                   |
 
 ---
 
