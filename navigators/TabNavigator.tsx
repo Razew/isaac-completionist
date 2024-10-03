@@ -12,6 +12,7 @@ export type TabParamList = {
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
+// TODO: Adjust placing of text relative to icon
 export default function TabNavigator() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
