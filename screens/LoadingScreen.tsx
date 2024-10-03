@@ -1,16 +1,17 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface Props {
   message?: string;
 }
 
-export default function LoadingScreen({ message }: Props) {
+export default function LoadingScreen({ message = "Loading..." }: Props) {
   return (
-    <View style={styles.loadingContainer}>
+    <SafeAreaView style={styles.loadingContainer}>
       <ActivityIndicator size="large" />
       {!!message ? <Text style={styles.loadingText}>{message}</Text> : null}
-    </View>
+    </SafeAreaView>
   );
 }
 
