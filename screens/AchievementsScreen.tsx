@@ -2,7 +2,7 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { Button, Surface, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { AchievementData, fetchAllAchievements } from "../api/steamApi";
@@ -18,8 +18,25 @@ type Props = CompositeScreenProps<
 export default function AchievementsScreen({ navigation }: Props) {
   const [achievements, setAchievements] = useState<AchievementData[]>([]);
 
-  const renderItem = ({ achievement }: { achievement: AchievementData }) => (
-    <AchievementCard achievement={achievement} />
+  const renderItem = ({ item }: { item: AchievementData }) => (
+    <AchievementCard achievement={item} />
+  );
+
+  const ApiErrorMessage = () => (
+    <Surface style={styles.messageContainer} elevation={4}>
+      <Text style={styles.title}>No Valid API Key Found</Text>
+      <Text style={styles.message}>
+        To access the achievements functionality, please add a Steam API key in
+        the settings menu.
+      </Text>
+      <Button
+        mode="contained"
+        onPress={() => navigation.navigate("Settings")}
+        buttonColor="#721c24"
+      >
+        Go to Settings
+      </Button>
+    </Surface>
   );
 
   useEffect(() => {
@@ -53,11 +70,18 @@ export default function AchievementsScreen({ navigation }: Props) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Achievements Screen</Text>
-      {renderItem({ achievement: achievements[0] })}
-      {/* {achievements.map((a) => (
-        <Text key={a.name}>{a.displayName}</Text>
-      ))} */}
+      <FlatList
+        ListHeaderComponent={
+          <Text style={styles.listHeader}>All Achievements</Text>
+        }
+        data={achievements}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.name}
+        // getItemLayout={getItemLayout}
+        initialNumToRender={20}
+        // ListEmptyComponent={ApiErrorMessage}
+        style={{ width: "100%" }}
+      />
     </SafeAreaView>
   );
 }
@@ -88,5 +112,12 @@ const styles = StyleSheet.create({
     color: "#721c24",
     textAlign: "center",
     marginBottom: 20,
+  },
+  listHeader: {
+    fontSize: 26,
+    fontWeight: "bold",
+    textAlign: "center",
+    // marginTop: 10,
+    marginBottom: 5,
   },
 });
