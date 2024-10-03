@@ -86,7 +86,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#422275",
     padding: 5,
-    margin: 25,
+    marginTop: 5,
+    marginHorizontal: 15,
+    marginBottom: 49,
     borderRadius: 3,
   },
   listHeader: {
