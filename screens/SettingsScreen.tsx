@@ -4,7 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { Button, Snackbar, Text, TextInput } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export const checkApiKeyExists = async () => {
+const checkApiKeyExists = async () => {
   const result = await getItemAsync("API_KEY");
   return result !== null;
 };
@@ -74,8 +74,14 @@ export default function SettingsScreen() {
           {apiKeyExists ? "SAVED" : "MISSING"}
         </Text>
       </View>
-      <Button mode="contained" style={styles.resetButton} onPress={handleReset}>
-        Reset key
+      <Button
+        mode="contained"
+        style={styles.resetButton}
+        buttonColor="rgb(186, 26, 26)"
+        onPress={handleReset}
+        disabled={!apiKeyExists}
+      >
+        Reset Key
       </Button>
       <Snackbar
         visible={visible}
@@ -126,7 +132,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   statusContainer: {
-    marginTop: 20,
+    marginTop: 300,
     flexDirection: "row",
     justifyContent: "center",
   },
