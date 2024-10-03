@@ -9,26 +9,30 @@ export type AchievementData = {
 };
 
 export const fetchAllAchievements = async () => {
-  const apiKey = await getItemAsync("API_KEY");
-  if (!apiKey) {
-    throw new Error("API key not found");
+  try {
+    const apiKey = await getItemAsync("API_KEY");
+    if (!apiKey) {
+      throw new Error("API key not found");
+    }
+    const url = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${apiKey}&appid=250900`;
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const data = await response.json();
+      const achievements: AchievementData[] =
+        data.game.availableGameStats.achievements.map(
+          ({ defaultvalue, hidden, ...achievement }: any) => ({
+            ...achievement,
+          })
+        );
+
+      return achievements;
+    } else {
+      throw new Error("Failed to fetch achievements");
+    }
+  } catch (error: any) {
+    return [];
   }
-  const url = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${apiKey}&appid=250900`;
-  const response = await fetch(url);
-
-  if (response.ok) {
-    const data = await response.json();
-
-    const achievements: AchievementData[] =
-      data.game.availableGameStats.achievements.map(
-        ({ defaultvalue, hidden, ...achievement }: any) => ({
-          ...achievement,
-        })
-      );
-
-    return achievements;
-  }
-  return [];
 };
 
 // Example of raw data in the achievements array of the json response
