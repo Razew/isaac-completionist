@@ -18,17 +18,16 @@ export const fetchAllAchievements = async () => {
   const data = await response.json();
 
   const achievements: AchievementData[] =
-    data.game.availableGameStats.achievements.map((achievement: any) => ({
-      name: achievement.name,
-      displayName: achievement.displayName,
-      description: achievement.description,
-      icon: achievement.icon,
-      icongray: achievement.icongray,
-    }));
+    data.game.availableGameStats.achievements.map(
+      ({ defaultvalue, hidden, ...achievement }: any) => ({
+        ...achievement,
+      })
+    );
 
   return achievements;
 };
 
+// Example of raw data in the achievements array of the json response
 //   "name": "1",
 //   "defaultvalue": 0,
 //   "displayName": "Magdalene",
