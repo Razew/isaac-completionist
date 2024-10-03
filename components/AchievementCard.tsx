@@ -21,6 +21,7 @@ const AchievementCard = ({ achievement }: { achievement: AchievementData }) => {
 const styles = StyleSheet.create({
   card: {
     width: "100%",
+    marginBottom: 4,
   },
   image: {
     width: 50,
