@@ -15,16 +15,20 @@ export const fetchAllAchievements = async () => {
   }
   const url = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${apiKey}&appid=250900`;
   const response = await fetch(url);
-  const data = await response.json();
 
-  const achievements: AchievementData[] =
-    data.game.availableGameStats.achievements.map(
-      ({ defaultvalue, hidden, ...achievement }: any) => ({
-        ...achievement,
-      })
-    );
+  if (response.ok) {
+    const data = await response.json();
 
-  return achievements;
+    const achievements: AchievementData[] =
+      data.game.availableGameStats.achievements.map(
+        ({ defaultvalue, hidden, ...achievement }: any) => ({
+          ...achievement,
+        })
+      );
+
+    return achievements;
+  }
+  return [];
 };
 
 // Example of raw data in the achievements array of the json response
