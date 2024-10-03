@@ -1,7 +1,7 @@
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { CompositeScreenProps } from "@react-navigation/native";
+import { CompositeScreenProps, useFocusEffect } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { Button, Surface, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -17,6 +17,7 @@ type Props = CompositeScreenProps<
 
 export default function AchievementsScreen({ navigation }: Props) {
   const [achievements, setAchievements] = useState<AchievementData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const renderItem = ({ item }: { item: AchievementData }) => (
     <AchievementCard achievement={item} />
@@ -39,31 +40,34 @@ export default function AchievementsScreen({ navigation }: Props) {
     </Surface>
   );
 
+  const fetchAchievements = async () => {
+    setLoading(true);
+    const result = await fetchAllAchievements();
+    setAchievements(result);
+    setLoading(false);
+  };
+
   useEffect(() => {
-    async function fetcher() {
-      const result = await fetchAllAchievements();
-      setAchievements(result);
-    }
-    fetcher();
+    fetchAchievements();
   }, []);
 
-  if (achievements.length === 0) {
+  useFocusEffect(
+    useCallback(() => {
+      if (achievements.length === 0) {
+        fetchAchievements();
+      }
+    }, [])
+  );
+
+  //FIXME: Dealing with loading WIP
+  // if (loading) {
+  //   return null;
+  // }
+
+  if (!loading && achievements.length === 0) {
     return (
       <SafeAreaView style={styles.container}>
-        <Surface style={styles.messageContainer} elevation={4}>
-          <Text style={styles.title}>No Valid API Key Found</Text>
-          <Text style={styles.message}>
-            To access the achievements functionality, please add a Steam API key
-            in the settings menu.
-          </Text>
-          <Button
-            mode="contained"
-            onPress={() => navigation.navigate("Settings")}
-            buttonColor="#721c24"
-          >
-            Go to Settings
-          </Button>
-        </Surface>
+        <ApiErrorMessage />
       </SafeAreaView>
     );
   }
@@ -79,7 +83,7 @@ export default function AchievementsScreen({ navigation }: Props) {
         keyExtractor={(item) => item.name}
         // getItemLayout={getItemLayout}
         initialNumToRender={20}
-        // ListEmptyComponent={ApiErrorMessage}
+        contentContainerStyle={styles.listContentContainer}
         style={{ width: "100%" }}
       />
     </SafeAreaView>
@@ -91,7 +95,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    padding: 20,
+    padding: 16,
+  },
+  listContentContainer: {
+    paddingHorizontal: 5,
   },
   messageContainer: {
     alignItems: "center",
