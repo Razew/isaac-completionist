@@ -33,3 +33,6 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Steam API Key (SECRET)
+steam_api_key.txt
