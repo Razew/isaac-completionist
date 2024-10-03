@@ -44,7 +44,7 @@ export default function ItemsScreen() {
   }, []);
 
   if (loading || !hasLoadedOnce) {
-    return <LoadingScreen message="Loading items..." />;
+    return <LoadingScreen message="Loading Items..." />;
   }
 
   return (
@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 16,
-    //  backgroundColor: "#282c34"
     alignItems: "center",
     justifyContent: "center",
   },
@@ -94,7 +93,6 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "bold",
     textAlign: "center",
-    // marginTop: 10,
     marginBottom: 5,
   },
 });
