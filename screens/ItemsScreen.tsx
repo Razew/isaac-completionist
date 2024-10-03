@@ -4,7 +4,7 @@ import { Modal, Portal, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import WebView from "react-native-webview";
 import Item from "../components/Item";
-import { useItems } from "../contexts/ItemProvider";
+import { useItems } from "../providers/ItemProvider";
 import { ItemData } from "../utils/fetchItems";
 import LoadingScreen from "./LoadingScreen";
 

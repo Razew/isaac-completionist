@@ -1,8 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { PaperProvider } from "react-native-paper";
-import ItemProvider from "./contexts/ItemProvider";
 import RootStackNavigator from "./navigators/RootStackNavigator";
+import ItemProvider from "./providers/ItemProvider";
 
 export default function App() {
   return (
