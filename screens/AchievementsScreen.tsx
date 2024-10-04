@@ -1,7 +1,7 @@
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps, useFocusEffect } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { Button, Surface, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -52,14 +52,6 @@ export default function AchievementsScreen({ navigation }: Props) {
       achievementsRef.current = result;
     }
   };
-
-  useEffect(() => {
-    if (achievementsRef.current.length === 0) {
-      fetchAchievements();
-    } else {
-      setAchievements(achievementsRef.current);
-    }
-  }, []);
 
   useFocusEffect(
     useCallback(() => {
