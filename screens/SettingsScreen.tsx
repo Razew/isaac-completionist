@@ -20,7 +20,7 @@ const deleteApiKey = async () => {
 export default function SettingsScreen() {
   const [inputApiKey, setInputApiKey] = useState("");
   const [visible, setVisible] = useState(false);
-  const [apiKeyExists, setApiKeyExists] = useState(true);
+  const [apiKeyExists, setApiKeyExists] = useState(false);
 
   useEffect(() => {
     const checkApiKey = async () => {
