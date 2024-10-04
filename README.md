@@ -14,6 +14,8 @@
 | Button (Paper)           | SecureStore       |
 | Linking _(module)_       |                   |
 
+_Obs. Linking finns även som en expo component_
+
 ### Ytterligare externa moduler
 
 - `cheerio-without-node-native`
