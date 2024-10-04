@@ -15,6 +15,13 @@ För att kunna hämta achievements krävs en Steam Web API Key. Du kan skaffa en
 Alternativt, om du heter **David** och har tillgång till `steam_api_key.txt`-filen, finns en key där. </br>
 I Isaac Completionist-appen kan man sedan spara denna under `Settings`-menyn.
 
+## Krav för att köra appen
+För att kunna använda **Isaac Completionist** krävs antingen:
+- [Expo Go](https://expo.dev/client) installerat på din mobil.
+- En emulator, som Android Studio, för att köra appen på din dator (se notering).
+
+**Notering:** Appen är testad med Android API 34, så se till att din emulator är inställd på denna version för bästa kompatibilitet.
+
 ## Använda komponenter
 
 | React Native             | Expo              |
