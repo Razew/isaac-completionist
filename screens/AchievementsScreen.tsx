@@ -1,7 +1,7 @@
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { CompositeScreenProps, useFocusEffect } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { Button, Surface, Text } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -16,13 +16,15 @@ type Props = CompositeScreenProps<
 >;
 
 export default function AchievementsScreen({ navigation }: Props) {
-  const [achievements, setAchievements] = useState<AchievementData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [achievements, setAchievements] = useState<AchievementData[]>([]); // Hade eventuellt kunnat ta bort denna och enbart använda useRef
+  const [hasError, setHasError] = useState(false);
+  const achievementsRef = useRef<AchievementData[]>([]);
 
   const renderItem = ({ item }: { item: AchievementData }) => (
     <AchievementCard achievement={item} />
   );
 
+  // Hade nog kunnat byta ut detta mot en 'Dialog' från Paper
   const ApiErrorMessage = () => (
     <Surface style={styles.messageContainer} elevation={4}>
       <Text style={styles.title}>No Valid API Key Found</Text>
@@ -41,51 +43,51 @@ export default function AchievementsScreen({ navigation }: Props) {
   );
 
   const fetchAchievements = async () => {
-    setLoading(true);
+    setHasError(false);
     const result = await fetchAllAchievements();
-    setAchievements(result);
-    setLoading(false);
+    if (result.length === 0) {
+      setHasError(true);
+    } else {
+      setAchievements(result);
+      achievementsRef.current = result;
+    }
   };
 
   useEffect(() => {
-    fetchAchievements();
+    if (achievementsRef.current.length === 0) {
+      fetchAchievements();
+    } else {
+      setAchievements(achievementsRef.current);
+    }
   }, []);
 
   useFocusEffect(
     useCallback(() => {
-      if (achievements.length === 0) {
+      if (achievementsRef.current.length === 0) {
         fetchAchievements();
+      } else {
+        setAchievements(achievementsRef.current);
       }
     }, [])
   );
 
-  //FIXME: Dealing with loading WIP
-  // if (loading) {
-  //   return null;
-  // }
-
-  if (!loading && achievements.length === 0) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <ApiErrorMessage />
-      </SafeAreaView>
-    );
-  }
-
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        ListHeaderComponent={
-          <Text style={styles.listHeader}>All Achievements</Text>
-        }
-        data={achievements}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.name}
-        // getItemLayout={getItemLayout}
-        initialNumToRender={20}
-        contentContainerStyle={styles.listContentContainer}
-        style={{ width: "100%" }}
-      />
+      {hasError || achievements.length === 0 ? (
+        <ApiErrorMessage />
+      ) : (
+        <FlatList
+          ListHeaderComponent={
+            <Text style={styles.listHeader}>All Achievements</Text>
+          }
+          data={achievements}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.name}
+          initialNumToRender={20}
+          contentContainerStyle={styles.listContentContainer}
+          style={{ width: "100%" }}
+        />
+      )}
     </SafeAreaView>
   );
 }
@@ -96,6 +98,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 16,
+    paddingBottom: 0,
   },
   listContentContainer: {
     paddingHorizontal: 5,
@@ -124,7 +127,6 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "bold",
     textAlign: "center",
-    // marginTop: 10,
     marginBottom: 5,
   },
 });
