@@ -77,7 +77,7 @@ export default function SettingsScreen() {
       <Button
         mode="contained"
         style={styles.resetButton}
-        buttonColor="rgb(186, 26, 26)"
+        // buttonColor="rgb(186, 26, 26)"
         onPress={handleReset}
         disabled={!apiKeyExists}
       >
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   statusContainer: {
-    marginTop: 300,
+    marginTop: 200,
     flexDirection: "row",
     justifyContent: "center",
   },
