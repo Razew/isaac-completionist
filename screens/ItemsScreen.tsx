@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, useWindowDimensions } from "react-native";
-import { Modal, Portal, Text } from "react-native-paper";
+import { Modal, Portal, Text, useTheme } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import WebView from "react-native-webview";
 import Item from "../components/Item";
@@ -16,6 +16,7 @@ export default function ItemsScreen() {
   const [hasLoadedOnce, setHasLoadedOnce] = useState(false);
   const { width: screenWidth } = useWindowDimensions();
   const itemSize = (screenWidth / 6) * 0.9;
+  const { colors } = useTheme();
 
   const renderItem = ({ item }: { item: ItemData }) => (
     <Item item={item} onPress={() => handleItemPress(item)} size={itemSize} />
@@ -65,7 +66,10 @@ export default function ItemsScreen() {
           <Modal
             visible
             onDismiss={handleModalDismiss}
-            contentContainerStyle={styles.modalContent}
+            contentContainerStyle={[
+              styles.modalContent,
+              { borderColor: colors.secondaryContainer },
+            ]}
           >
             <WebView source={{ uri: baseUrl + selectedItem.link }} />
           </Modal>
@@ -84,12 +88,12 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     flex: 1,
-    backgroundColor: "#422275",
-    padding: 5,
+    // padding: 5,
     marginTop: 5,
     marginHorizontal: 15,
     marginBottom: 49,
     borderRadius: 3,
+    borderWidth: 3,
   },
   listHeader: {
     fontSize: 26,
