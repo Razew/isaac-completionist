@@ -1,4 +1,19 @@
-# Inlämning 1 - React Native
+# Isaac Completionist
+Inlämning 1 - Apputveckling _(React Native)_
+
+## Beskrivning
+En React Native applikation vars syfte är att hjälpa spelare av **The Binding of Isaac: Rebirth** under sitt spelande. 
+Applikationen visar alla collectible items som finns i spelet, med en webbvy av deras respektive wiki-sida direkt i appen. Dessutom visas alla achievements.
+I framtiden kan funktionalitet för att automatiskt sortera ut de achievements man ännu inte har låst upp (via utökad Steam API integration), läggas till. Detta skulle underlätta för spelare att se och planera sin achievement hunt!
+
+## Bygg-/Körsteg
+1. `git clone https://github.com/Razew/isaac-completionist.git`
+2. `npm install`
+3. `npm start`
+
+För att kunna hämta achievements krävs en Steam Web API Key. Du kan skaffa en genom att följa instruktionerna här: [Steam Dev](https://steamcommunity.com/dev). </br>
+Alternativt, om du heter David och har tillgång till `steam_api_key.txt`-filen, finns en key där.
+I Isaac Completionist-appen kan man sedan spara denna under `Settings`-menyn.
 
 ### Använda komponenter
 
