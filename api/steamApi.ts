@@ -12,7 +12,7 @@ export const fetchAllAchievements = async () => {
   try {
     const apiKey = await getItemAsync("API_KEY");
     if (!apiKey) {
-      throw new Error("API key not found");
+      return [];
     }
     const url = `https://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${apiKey}&appid=250900`;
     const response = await fetch(url);
@@ -28,7 +28,7 @@ export const fetchAllAchievements = async () => {
 
       return achievements;
     } else {
-      throw new Error("Failed to fetch achievements");
+      return [];
     }
   } catch (error: any) {
     return [];
