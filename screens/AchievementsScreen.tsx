@@ -45,7 +45,7 @@ export default function AchievementsScreen({ navigation }: Props) {
               setVisible(false), navigation.navigate("Settings");
             }}
           >
-            Go to Settings
+            Settings
           </Button>
         </Dialog.Actions>
       </Dialog>
