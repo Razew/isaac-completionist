@@ -20,6 +20,27 @@ export default function AchievementsScreen({ navigation }: Props) {
   const [visible, setVisible] = useState(false);
   const achievementsRef = useRef<AchievementData[]>([]);
 
+  const fetchAchievements = async () => {
+    setVisible(false);
+    const result = await fetchAllAchievements();
+    if (result.length === 0) {
+      setVisible(true);
+    } else {
+      setAchievements(result);
+      achievementsRef.current = result;
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      if (achievementsRef.current.length === 0) {
+        fetchAchievements();
+      } else {
+        setAchievements(achievementsRef.current);
+      }
+    }, [])
+  );
+
   const renderItem = ({ item }: { item: AchievementData }) => (
     <AchievementCard achievement={item} />
   );
@@ -50,27 +71,6 @@ export default function AchievementsScreen({ navigation }: Props) {
         </Dialog.Actions>
       </Dialog>
     </Portal>
-  );
-
-  const fetchAchievements = async () => {
-    setVisible(false);
-    const result = await fetchAllAchievements();
-    if (result.length === 0) {
-      setVisible(true);
-    } else {
-      setAchievements(result);
-      achievementsRef.current = result;
-    }
-  };
-
-  useFocusEffect(
-    useCallback(() => {
-      if (achievementsRef.current.length === 0) {
-        fetchAchievements();
-      } else {
-        setAchievements(achievementsRef.current);
-      }
-    }, [])
   );
 
   return (
