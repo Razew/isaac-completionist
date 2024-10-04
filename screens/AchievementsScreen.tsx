@@ -16,7 +16,7 @@ type Props = CompositeScreenProps<
 >;
 
 export default function AchievementsScreen({ navigation }: Props) {
-  const [achievements, setAchievements] = useState<AchievementData[]>([]); // Hade eventuellt kunnat ta bort denna och enbart använda useRef
+  const [achievements, setAchievements] = useState<AchievementData[]>([]);
   const [visible, setVisible] = useState(false);
   const achievementsRef = useRef<AchievementData[]>([]);
 
