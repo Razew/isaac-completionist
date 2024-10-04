@@ -12,10 +12,10 @@ I framtiden kan funktionalitet för att automatiskt sortera ut de achievements m
 3. `npm start`
 
 För att kunna hämta achievements krävs en Steam Web API Key. Du kan skaffa en genom att följa instruktionerna här: [Steam Dev](https://steamcommunity.com/dev). </br>
-Alternativt, om du heter David och har tillgång till `steam_api_key.txt`-filen, finns en key där.
+Alternativt, om du heter **David** och har tillgång till `steam_api_key.txt`-filen, finns en key där. </br>
 I Isaac Completionist-appen kan man sedan spara denna under `Settings`-menyn.
 
-### Använda komponenter
+## Använda komponenter
 
 | React Native             | Expo              |
 | ------------------------ | ----------------- |
@@ -31,14 +31,14 @@ I Isaac Completionist-appen kan man sedan spara denna under `Settings`-menyn.
 
 _Obs. Linking finns även som en expo component_
 
-### Ytterligare externa moduler
+## Ytterligare externa moduler
 
 - `cheerio-without-node-native`
 - `react-native-paper`
 
----
+## Krav
 
-**Krav för godkänt:**
+**Godkänt:**
 
 - [x] Projektet använder minst 4 stycken RN-komponenter och minst 4 stycken Expo
       komponenter.
@@ -50,12 +50,10 @@ _Obs. Linking finns även som en expo component_
 - [x] Uppgiften lämnas in i tid!
 - [x] Muntlig presentation är genomförd
 
-**Krav för väl godkänt:**
+**Väl godkänt:**
 
 - [x] Alla punkter för godkänt är uppfyllda
 - [x] Ytterligare en valfri extern modul används i projektet (ex. react-hook-form).
 - [x] Appen ska prata med ett Web-API för att hämta data.
 - [ ] Appen ska förberedas för lansering till en Appstore (Deadline samma dag som kursen
       slutar)
-
----
