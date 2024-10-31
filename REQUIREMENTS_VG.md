@@ -19,6 +19,7 @@ Utöver det som ska anges i den här filen så ska du även lägga till en appik
 Nu kan du bygga appen med EAS och ladda hem filen när den är klar. Fyll sedan i nedanstående uppgifter som bevis på att du bara är några få steg ifrån att lansera din applikation på butiken.
 
 **Applikationens Namn:**
+Isaac Completionist
 
 **Kort Beskrivning (max 80):**
 
