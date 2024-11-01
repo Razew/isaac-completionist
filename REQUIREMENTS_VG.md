@@ -32,7 +32,10 @@ Appen ger en översikt av alla collectible items i en praktisk grid-vy, där var
 Framtida uppdateringar kan även inkludera möjligheten att automatiskt sortera achievements baserat på vad spelaren redan har låst upp, vilket gör det ännu enklare att sätta upp mål och planera sin väg till 100% completion!
 
 Applikationens ikon och laddningsbild.
-![AppIkon (512x512)](./path/to/image.jpg);
+
+<!-- ![AppIkon (512x512)](./path/to/image.jpg); -->
+
+![AppIkon (512x512)](./assets/adaptive-icon.png);
 ![SplashScreen (512x512)](./path/to/image.jpg);
 [Läs mer om dessa bilder här](https://docs.expo.dev/develop/user-interface/splash-screen-and-app-icon/).
 
