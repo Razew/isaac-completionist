@@ -22,8 +22,14 @@ Nu kan du bygga appen med EAS och ladda hem filen när den är klar. Fyll sedan 
 Isaac Completionist
 
 **Kort Beskrivning (max 80):**
+Hjälpmedel för att se items och achievements i The Binding of Isaac: Rebirth
 
 **Fullständig Beskrivning (max 4000):**
+Isaac Completionist är en app för fans av spelet The Binding of Isaac: Rebirth. Med denna app kan spelare lätt navigera genom alla items och achievements i spelet för att lättare kunna kolla upp vad olika items gör, och deras synergier med andra items, samt vad de behöver för att kryssa av alla achievements.
+
+Appen ger en översikt av alla collectible items i en praktisk grid-vy, där varje item kan klickas för att snabbt öppna en wiki-sida om just det itemet direkt i appen. Dessutom finns en separat sektion för achievements, vilket gör det enkelt att följa sina framsteg och spåra vilka som återstår.
+
+Framtida uppdateringar kan även inkludera möjligheten att automatiskt sortera achievements baserat på vad spelaren redan har låst upp, vilket gör det ännu enklare att sätta upp mål och planera sin väg till 100% completion!
 
 Applikationens ikon och laddningsbild.
 ![AppIkon (512x512)](./path/to/image.jpg);

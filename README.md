@@ -1,12 +1,15 @@
 # Isaac Completionist
+
 Inlämning 1 - Apputveckling _(React Native)_
 
 ## Beskrivning
-En React Native applikation vars syfte är att hjälpa spelare av **The Binding of Isaac: Rebirth** under sitt spelande. 
+
+En React Native applikation vars syfte är att hjälpa spelare av **The Binding of Isaac: Rebirth** under sitt spelande.
 Applikationen visar alla collectible items som finns i spelet, med en webbvy av deras respektive wiki-sida direkt i appen. Dessutom visas alla achievements.
 I framtiden kan funktionalitet för att automatiskt sortera ut de achievements man ännu inte har låst upp (via utökad Steam API integration), läggas till. Detta skulle underlätta för spelare att se och planera sin achievement hunt!
 
 ## Bygg-/Körsteg
+
 1. `git clone https://github.com/Razew/isaac-completionist.git`
 2. `npm install`
 3. `npm start`
@@ -16,7 +19,9 @@ Alternativt, om du heter **David** och har tillgång till `steam_api_key.txt`-fi
 I Isaac Completionist-appen kan man sedan spara denna under `Settings`-menyn.
 
 ## Krav för att köra appen
+
 För att kunna använda **Isaac Completionist** krävs antingen:
+
 - [Expo Go](https://expo.dev/client) installerat på din mobil.
 - En emulator, som Android Studio, för att köra appen på din dator (se notering).
 
@@ -62,5 +67,5 @@ _Obs. Linking finns även som en expo component_
 - [x] Alla punkter för godkänt är uppfyllda
 - [x] Ytterligare en valfri extern modul används i projektet (ex. react-hook-form).
 - [x] Appen ska prata med ett Web-API för att hämta data.
-- [ ] Appen ska förberedas för lansering till en Appstore (Deadline samma dag som kursen
+- [x] Appen ska förberedas för lansering till en Appstore (Deadline samma dag som kursen
       slutar)
