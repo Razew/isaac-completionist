@@ -36,7 +36,7 @@ Applikationens ikon och laddningsbild.
 <!-- ![AppIkon (512x512)](./path/to/image.jpg); -->
 
 ![AppIkon (512x512)](./assets/adaptive-icon.png);
-![SplashScreen (512x512)](./path/to/image.jpg);
+![SplashScreen (512x512)](./assets/splash.png);
 [Läs mer om dessa bilder här](https://docs.expo.dev/develop/user-interface/splash-screen-and-app-icon/).
 
 En omslagsbild som visas på olika ställen i butiken.
