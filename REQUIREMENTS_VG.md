@@ -33,19 +33,20 @@ Framtida uppdateringar kan även inkludera möjligheten att automatiskt sortera 
 
 Applikationens ikon och laddningsbild.
 
-<!-- ![AppIkon (512x512)](./path/to/image.jpg); -->
-
-![AppIkon (512x512)](./assets/adaptive-icon.png);
-![SplashScreen (512x512)](./assets/splash.png);
+![AppIkon (512x512)](./assets/adaptive-icon.png)
+![SplashScreen (512x512)](./assets/splash.png)
 [Läs mer om dessa bilder här](https://docs.expo.dev/develop/user-interface/splash-screen-and-app-icon/).
 
 En omslagsbild som visas på olika ställen i butiken.
-![Funktionsbild (1024x500)](../path/to/image.jpg);
+![Funktionsbild (1024x500)](./assets/cover.png)
 
 Två till åtta fönsterbilder i formatet 16:9 eller 9:16 samt bredd och höjd mellan 320 och 3840 px.
-![Fönsterbild 1 Telefon](./path/to/image.jpg);
-![Fönsterbild 2 Telefon](./path/to/image.jpg);
+![Fönsterbild 1 Telefon](./assets/screenshots/startscreen.png)
+![Fönsterbild 2 Telefon](./assets/screenshots/items.png)
+![Fönsterbild 3 Telefon](./assets/screenshots/achievements.png)
+![Fönsterbild 4 Telefon](./assets/screenshots/webview_1.png)
+![Fönsterbild 5 Telefon](./assets/screenshots/webview_2.png)
 
-[Binärfilen](./path/to/build.aab);
-![Screenshot på expo bygget](./path/to/build.aab);
+[Binärfilen](./application-b948649e-6a53-4a08-818a-f74669631d51.aab);
+![Screenshot på expo bygget](./assets/screenshots/expo_build.png);
 Tänk på att bilden måste visa både "Created By" och "Start Time".
