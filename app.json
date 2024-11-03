@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_text.png",
       "resizeMode": "contain",
       "backgroundColor": "#996AD1"
     },
@@ -22,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#996AD1"
-      }
+      },
+      "package": "com.razew.isaaccompletionist"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -35,6 +36,11 @@
           "initialOrientation": "LANDSCAPE"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "ae014f5f-3758-425a-8352-cac1b57efb4f"
+      }
+    }
   }
 }
