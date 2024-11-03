@@ -36,7 +36,7 @@ Applikationens ikon och laddningsbild.
 
 ![AppIkon (512x512)](./assets/adaptive-icon.png)
 ![SplashScreen (512x512)](./assets/splash_text.png)
-_Notera att bakgrundsfärgen för splashscreenen sätts i app.json_ </br>
+_Notera att bakgrundsfärgen för både splashscreenen och adaptive-icon sätts i app.json_ </br>
 [Läs mer om dessa bilder här](https://docs.expo.dev/develop/user-interface/splash-screen-and-app-icon/).
 
 En omslagsbild som visas på olika ställen i butiken.
