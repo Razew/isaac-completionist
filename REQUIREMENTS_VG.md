@@ -47,6 +47,6 @@ Två till åtta fönsterbilder i formatet 16:9 eller 9:16 samt bredd och höjd m
 ![Fönsterbild 4 Telefon](./assets/screenshots/webview_1.png)
 ![Fönsterbild 5 Telefon](./assets/screenshots/webview_2.png)
 
-[Binärfilen](./application-b948649e-6a53-4a08-818a-f74669631d51.aab);
-![Screenshot på expo bygget](./assets/screenshots/expo_build.png);
+[Binärfilen](./application-b948649e-6a53-4a08-818a-f74669631d51.aab)
+![Screenshot på expo bygget](./assets/screenshots/expo_build.png)
 Tänk på att bilden måste visa både "Created By" och "Start Time".
